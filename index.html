@@ -3,548 +3,324 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Tajna misija</title>
+<title>Zaupna misija</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #111;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 20px;
 }
 
-body{
-    background:linear-gradient(135deg,#ff9aa2,#fec8d8,#ffd8be);
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow:hidden;
-    padding:20px;
+.container {
+    max-width: 700px;
 }
 
-.card{
+.hidden {
+    display: none;
+}
+
+button {
+    background: #2b84ff;
+    color: white;
+    border: none;
+    padding: 14px 24px;
+    margin: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+button:hover {
+    background: #1069e0;
+}
+
+.question {
+    margin: 25px 0;
+}
+
+input[type="text"] {
+    padding: 12px;
+    width: 250px;
+    max-width: 100%;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+}
+
+h1 {
+    color: #ffd54f;
+}
+
+.final {
+    animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+    from {opacity:0;}
+    to {opacity:1;}
+}
+
+#confetti {
+    position: fixed;
+    top:0;
+    left:0;
     width:100%;
-    max-width:600px;
-    background:white;
-    border-radius:28px;
-    padding:35px;
-    text-align:center;
-    box-shadow:0 20px 50px rgba(0,0,0,.15);
-    position:relative;
-    z-index:10;
-}
-
-.hidden{
-    display:none;
-}
-
-h1{
-    color:#d63384;
-    margin-bottom:20px;
-}
-
-h2{
-    margin-bottom:15px;
-    color:#444;
-}
-
-p{
-    color:#555;
-    line-height:1.6;
-    margin-bottom:14px;
-}
-
-button{
-    border:none;
-    border-radius:14px;
-    padding:15px 24px;
-    font-size:16px;
-    margin:8px;
-    cursor:pointer;
-    transition:.25s;
-}
-
-button:hover{
-    transform:scale(1.05);
-}
-
-.primary{
-    background:#d63384;
-    color:white;
-}
-
-.option{
-    width:100%;
-    background:#f4f4f4;
-}
-
-#yesBtn{
-    background:#28a745;
-    color:white;
-}
-
-#noBtn{
-    background:#dc3545;
-    color:white;
-    position:relative;
-}
-
-#progress{
-    width:100%;
-    height:12px;
-    background:#eee;
-    border-radius:999px;
-    overflow:hidden;
-    margin-bottom:25px;
-}
-
-#bar{
     height:100%;
-    width:0%;
-    transition:.4s;
-    background:#d63384;
-}
-
-.big{
-    font-size:60px;
-}
-
-.certificate{
-    border:3px dashed #d63384;
-    border-radius:20px;
-    margin-top:20px;
-    padding:20px;
-}
-
-.confetti{
-    position:fixed;
-    width:12px;
-    height:12px;
-    top:-20px;
-    animation:fall linear forwards;
-    z-index:9999;
-}
-
-@keyframes fall{
-    to{
-        transform:
-        translateY(110vh)
-        rotate(1080deg);
-        opacity:0;
-    }
-}
-
-.heart{
-    position:fixed;
-    bottom:-50px;
-    font-size:28px;
-    animation:floatHeart linear forwards;
     pointer-events:none;
 }
-
-@keyframes floatHeart{
-
-    from{
-        opacity:0;
-        transform:scale(.4);
-    }
-
-    20%{
-        opacity:1;
-    }
-
-    to{
-        transform:
-        translateY(-120vh)
-        translateX(50px)
-        scale(1.5);
-
-        opacity:0;
-    }
-}
-
-#hint{
-    margin-top:20px;
-    color:#d63384;
-    font-weight:bold;
-}
-
-.analysis{
-    text-align:left;
-    max-width:350px;
-    margin:20px auto;
-}
-
-.analysis div{
-    margin:12px 0;
-}
-
 </style>
 </head>
-
 <body>
 
-<div class="card">
+<canvas id="confetti"></canvas>
 
-<!-- UVOD -->
+<div class="container">
 
-<div id="step0">
+    <!-- Stran 1 -->
+    <div id="step1">
+        <h1>🔒 Dobrodošla, agentka</h1>
 
-<h1>🔐 TAJNA MISIJA</h1>
+        <p>
+            Če bereš to sporočilo, si bila izbrana za posebno nalogo.
+        </p>
 
-<p>
-Pozdravljena Katja!
-</p>
+        <p>
+            Zaradi pomembnosti misije ne moremo razkriti vseh informacij takoj.
+        </p>
 
-<p>
-Bila si izbrana za sodelovanje pri strogo zaupnem projektu.
-</p>
+        <p>
+            Najprej moramo preveriti, ali si prava oseba.
+        </p>
 
-<p>
-Stopnja tajnosti:
-</p>
+        <button onclick="next(1,2)">
+            SPREJMI MISIJO
+        </button>
+    </div>
 
-<h2>██████████ 100%</h2>
+    <!-- Stran 2 -->
+    <div id="step2" class="hidden">
 
-<p>
-Za nadaljevanje klikni spodaj.
-</p>
+        <h1>🗝️ Preizkus zaupanja</h1>
 
-<button class="primary" onclick="nextStep()">
-Začni misijo
-</button>
+        <div class="question">
+            <p><b>1. Kaj narediš, če te prijatelj prosi za pomoč?</b></p>
+            <label><input type="radio" name="q1"> Ignoriram ga.</label><br>
+            <label><input type="radio" name="q1" data-correct> Pomagam, če lahko.</label><br>
+            <label><input type="radio" name="q1"> Pobegnem.</label>
+        </div>
 
-</div>
+        <div class="question">
+            <p><b>2. Koliko skrivnosti znaš obdržati?</b></p>
+            <label><input type="radio" name="q2"> Nobene.</label><br>
+            <label><input type="radio" name="q2"> Nekaj.</label><br>
+            <label><input type="radio" name="q2" data-correct> Vse, kar mi je zaupano.</label>
+        </div>
 
-<!-- KVIZ -->
+        <div class="question">
+            <p><b>3. Kako dobro skrbiš za ljudi, ki jih imaš rada?</b></p>
+            <label><input type="radio" name="q3"> Slabo.</label><br>
+            <label><input type="radio" name="q3"> Povprečno.</label><br>
+            <label><input type="radio" name="q3" data-correct> Z vsem srcem.</label>
+        </div>
 
-<div id="quiz" class="hidden">
+        <button onclick="checkQuiz()">
+            PREVERI ODGOVORE
+        </button>
 
-<div id="progress">
-<div id="bar"></div>
-</div>
+    </div>
 
-<h2 id="question"></h2>
+    <!-- Stran 3 -->
+    <div id="step3" class="hidden">
 
-<div id="answers"></div>
+        <h1>📂 Skrivni arhiv</h1>
 
-</div>
+        <p>
+            V arhivu se skriva ključ za nadaljevanje.
+        </p>
 
-<!-- ANALIZA -->
+        <p>
+            Kaj postane večje, ko ga deliš z drugimi?
+        </p>
 
-<div id="analysis" class="hidden">
+        <button onclick="unlockRiddle(true)">Ljubezen</button>
+        <button onclick="unlockRiddle(false)">Pica</button>
+        <button onclick="unlockRiddle(false)">Denarnica</button>
 
-<h1>🔍 Analiza rezultatov</h1>
+    </div>
 
-<div class="analysis">
+    <!-- Stran 4 -->
+    <div id="step4" class="hidden">
 
-<div>✅ Preverjanje empatije ............ OK</div>
-<div>✅ Preverjanje potrpežljivosti ..... OK</div>
-<div>✅ Preverjanje humorja ............. OK</div>
-<div>✅ Preverjanje razvajanja .......... OK</div>
+        <h1>🔐 Zadnji sef</h1>
 
-</div>
+        <p>
+            Za odklep vnesi geslo.
+        </p>
 
-<p>
-Izračunavam primernost za posebno nalogo ...
-</p>
+        <p>
+            Namig: Lastnost, brez katere nobena družina ne more uspeti.
+        </p>
 
-</div>
+        <input id="password" type="text" placeholder="Vnesi geslo">
 
-<!-- RAZKRITJE -->
+        <br><br>
 
-<div id="reveal" class="hidden">
+        <button onclick="checkPassword()">
+            ODKLENI
+        </button>
 
-<h1>⚠️ REZULTAT</h1>
+    </div>
 
-<p>
-Po temeljiti analizi je bila najdena ena primerna oseba:
-</p>
+    <!-- Stran 5 -->
+    <div id="step5" class="hidden final">
 
-<h1>❤️ KATJA ❤️</h1>
+        <h1>✨ Dostop odobren</h1>
 
-<button class="primary" onclick="showQuestion()">
-Nadaljuj
-</button>
+        <p>Iskali smo nekoga posebnega.</p>
 
-</div>
+        <p>Nekoga, ki mu brezpogojno zaupamo.</p>
 
-<!-- VPRAŠANJE -->
+        <p>Nekoga, ki bo vedno pomemben del najine družine.</p>
 
-<div id="mainQuestion" class="hidden">
+        <br>
 
-<div class="big">👶</div>
+        <button onclick="next(5,6)">
+            ODPRI VPRAŠANJE
+        </button>
 
-<h1>Živjo!</h1>
+    </div>
 
-<p>
-Sem
-<strong>IME_OTROKA</strong>.
-</p>
+    <!-- Končna stran -->
+    <div id="step6" class="hidden final">
 
-<p>
-Mami in ati pravita, da bom kmalu potreboval nekoga posebnega.
-</p>
+        <h1>❤️ Zelo pomembno vprašanje ❤️</h1>
 
-<p>
-❤️ Nekoga za objeme<br>
-❤️ Nekoga za pomoč<br>
-❤️ Nekoga za zabavne dogodivščine<br>
-❤️ Nekoga za kakšen sladoled
-</p>
+        <h2>Bi postala botra najinemu otroku?</h2>
 
-<h2>
-Bi postala krstna botra?
-</h2>
+        <br>
 
-<div>
+        <button onclick="celebrate()">
+            DA ❤️
+        </button>
 
-<button id="yesBtn" onclick="celebrate()">
-Z največjim veseljem ❤️
-</button>
+        <button onclick="celebrate()">
+            ABSOLUTNO DA ❤️
+        </button>
 
-<button id="noBtn">
-Ne 😄
-</button>
+        <div id="result"></div>
 
-</div>
-
-<p id="hint"></p>
-
-</div>
-
-<!-- KONEC -->
-
-<div id="finalScreen" class="hidden">
-
-<h1>🎉 ČESTITKE 🎉</h1>
-
-<p>
-Uspešno si zaključila skrivno misijo.
-</p>
-
-<div class="certificate">
-
-<h2>CERTIFIKAT</h2>
-
-<p>
-S tem potrjujemo, da je
-</p>
-
-<h1>KATJA</h1>
-
-<p>
-uspešno opravila vse teste in sprejela funkcijo
-</p>
-
-<h2>❤️ KRSTNA BOTRA ❤️</h2>
-
-<br>
-
-<p>
-Otrok: <strong>IME_OTROKA</strong>
-</p>
-
-<p>
-Mami: <strong>IME_PARTNERKE</strong>
-</p>
-
-<p>
-Ati: <strong>TVOJE_IME</strong>
-</p>
-
-<p id="date"></p>
-
-</div>
-
-</div>
+    </div>
 
 </div>
 
 <script>
 
-const questions = [
-
-{
-q:"Koliko kepic sladoleda je prava količina? 🍦",
-a:["1","2","Kolikor je potrebno"]
-},
-
-{
-q:"Otrok želi še eno pravljico. Kaj narediš? 📚",
-a:["Še eno","Še dve","Berem dokler ne zaspim"]
-},
-
-{
-q:"Kako dobra si pri hranjenju skrivnosti? 🤫",
-a:["Dobro","Zelo dobro","Nihče ne ve"]
+function next(from,to){
+    document.getElementById("step"+from).classList.add("hidden");
+    document.getElementById("step"+to).classList.remove("hidden");
 }
 
-];
+function checkQuiz(){
 
-let current = 0;
+    const answers =
+        document.querySelector('[name=q1][data-correct]').checked &&
+        document.querySelector('[name=q2][data-correct]').checked &&
+        document.querySelector('[name=q3][data-correct]').checked;
 
-function nextStep(){
-
-document.getElementById("step0").classList.add("hidden");
-document.getElementById("quiz").classList.remove("hidden");
-
-loadQuestion();
-
+    if(answers){
+        next(2,3);
+    }else{
+        alert("Poskusi znova 😊");
+    }
 }
 
-function loadQuestion(){
+function unlockRiddle(correct){
 
-let q = questions[current];
-
-document.getElementById("question").innerText = q.q;
-
-let html = "";
-
-q.a.forEach(answer=>{
-
-html += `
-<button class="option" onclick="nextQuestion()">
-${answer}
-</button>
-`;
-
-});
-
-document.getElementById("answers").innerHTML = html;
-
-document.getElementById("bar").style.width =
-(current/questions.length)*100 + "%";
-
+    if(correct){
+        next(3,4);
+    }else{
+        alert("To ni pravi odgovor.");
+    }
 }
 
-function nextQuestion(){
+function checkPassword(){
 
-current++;
+    const p =
+        document
+        .getElementById("password")
+        .value
+        .trim()
+        .toLowerCase();
 
-if(current < questions.length){
-
-loadQuestion();
-
-}else{
-
-document.getElementById("quiz").classList.add("hidden");
-document.getElementById("analysis").classList.remove("hidden");
-
-setTimeout(()=>{
-
-document.getElementById("analysis").classList.add("hidden");
-document.getElementById("reveal").classList.remove("hidden");
-
-},3500);
-
-}
-
-}
-
-function showQuestion(){
-
-document.getElementById("reveal").classList.add("hidden");
-document.getElementById("mainQuestion").classList.remove("hidden");
-
-setTimeout(()=>{
-
-document.getElementById("hint").innerText =
-"Namig: 'Ne' ni veljavna možnost 😄";
-
-},5000);
-
-}
-
-const noBtn = document.getElementById("noBtn");
-
-function moveButton(){
-
-const x = Math.random()*250 - 125;
-const y = Math.random()*120 - 60;
-
-noBtn.style.transform =
-`translate(${x}px,${y}px)`;
-
-}
-
-noBtn.addEventListener("mouseenter",moveButton);
-noBtn.addEventListener("touchstart",moveButton);
-
-function confetti(){
-
-const colors = [
-"#ff3366",
-"#ffd43b",
-"#4dabf7",
-"#40c057",
-"#be4bdb"
-];
-
-for(let i=0;i<160;i++){
-
-const c = document.createElement("div");
-
-c.className = "confetti";
-
-c.style.left = Math.random()*100+"vw";
-c.style.background =
-colors[Math.floor(Math.random()*colors.length)];
-
-c.style.animationDuration =
-(2 + Math.random()*3)+"s";
-
-document.body.appendChild(c);
-
-setTimeout(()=>{
-c.remove();
-},6000);
-
-}
-
-}
-
-function hearts(){
-
-setInterval(()=>{
-
-const h = document.createElement("div");
-
-h.className="heart";
-
-h.innerHTML =
-Math.random()>0.5 ? "❤️" : "💖";
-
-h.style.left = Math.random()*100+"vw";
-
-h.style.animationDuration =
-(5 + Math.random()*4)+"s";
-
-document.body.appendChild(h);
-
-setTimeout(()=>{
-h.remove();
-},9000);
-
-},250);
-
+    if(p === "ljubezen"){
+        next(4,5);
+    }else{
+        alert("Napačno geslo.");
+    }
 }
 
 function celebrate(){
 
-document.getElementById("mainQuestion").classList.add("hidden");
-document.getElementById("finalScreen").classList.remove("hidden");
+    document.getElementById("result").innerHTML =
+        "<h2>🎉 Misija uspešno zaključena! 🎉</h2>" +
+        "<h1>Status: BOTRA ❤️</h1>" +
+        "<p>Komaj čakamo, da to pustolovščino doživimo skupaj.</p>";
 
-document.getElementById("date").innerText =
-"Datum: " + new Date().toLocaleDateString("sl-SI");
-
-confetti();
-hearts();
-
+    startConfetti();
 }
 
+/* confetti */
+
+function startConfetti() {
+
+    const canvas = document.getElementById("confetti");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const pieces = [];
+
+    for(let i=0;i<200;i++){
+        pieces.push({
+            x: Math.random()*canvas.width,
+            y: Math.random()*canvas.height-canvas.height,
+            r: Math.random()*8+4,
+            d: Math.random()*200,
+            color:`hsl(${Math.random()*360},100%,50%)`
+        });
+    }
+
+    function draw(){
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+
+        pieces.forEach(p=>{
+            ctx.beginPath();
+            ctx.fillStyle=p.color;
+            ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+            ctx.fill();
+
+            p.y += 3;
+            p.x += Math.sin(p.d);
+
+            if(p.y > canvas.height){
+                p.y = -20;
+            }
+        });
+
+        requestAnimationFrame(draw);
+    }
+
+    draw();
+}
 </script>
 
 </body>
